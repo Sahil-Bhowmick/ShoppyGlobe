@@ -1,20 +1,26 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { cartImg } from "../assets/index";
 import { FaSearch } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const productData = useSelector((state) => state.shoppyGlobe.productData);
+
   return (
     <div
       className="w-full bg-white border-b-[1px] border-b-gray-800  
    font-titleFont sticky top-0 z-50"
     >
-      <div className="max-w-screen-xl h-20 mx-auto flex items-center justify-between px-4">
+      <div className="max-w-screen-xl h-20 mx-auto flex items-center justify-between px-3 md:px4">
         {/* Logo */}
-        <div>
-          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 hover:text-gray-600 cursor-pointer">
-            ShoppyGlobe
-          </p>
-        </div>
+        <Link to="/">
+          <div>
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 hover:text-gray-600 cursor-pointer">
+              ShoppyGlobe
+            </p>
+          </div>
+        </Link>
 
         {/* Search Bar (Responsive) */}
         <div className="flex-1 flex justify-center px-4">
@@ -30,12 +36,12 @@ const Header = () => {
         {/* Navigation Menu and Cart (Right Side) */}
         <div className="flex items-center gap-8">
           <ul className="hidden md:flex items-center gap-10">
-            <li className="text-base font-bold hover:text-orange-600 duration-300 cursor-pointer">
-              Home
-            </li>
-            <li className="text-base font-bold hover:text-orange-600 duration-300 cursor-pointer">
-              Pages
-            </li>
+            <Link to="/">
+              <li className="text-base font-bold hover:text-orange-600 duration-300 cursor-pointer">
+                Home
+              </li>
+            </Link>
+
             <li className="text-base font-bold hover:text-orange-600 duration-300 cursor-pointer">
               Shop
             </li>
@@ -43,12 +49,14 @@ const Header = () => {
               About
             </li>
           </ul>
-          <div className="relative">
-            <img className="w-10" src={cartImg} alt="cart-image" />
-            <span className="absolute top-[-4px] right-[-4px] w-5 h-5 text-xs flex items-center justify-center font-semibold bg-red-500 text-white rounded-full">
-              20
-            </span>
-          </div>
+          <Link to="/cart">
+            <div className="relative">
+              <img className="w-10" src={cartImg} alt="cart-image" />
+              <span className="absolute top-[-4px] right-[-4px] w-5 h-5 text-xs flex items-center justify-center font-semibold bg-red-500 text-white rounded-full">
+                {productData.length}
+              </span>
+            </div>
+          </Link>
         </div>
       </div>
     </div>

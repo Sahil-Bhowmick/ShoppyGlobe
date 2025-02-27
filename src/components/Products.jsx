@@ -2,7 +2,6 @@ import React from "react";
 import ProductsCard from "./ProductsCard";
 
 const Products = ({ products }) => {
-  console.log(products);
   return (
     <div className="py-10 px-4 lg:px-0">
       <div className="max-w-screen-xl mx-auto">

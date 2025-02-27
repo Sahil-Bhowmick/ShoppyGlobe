@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   productData: [],
   userInfo: null,
+  searchTerm: "",
 };
 
 export const cartSlice = createSlice({
@@ -31,12 +32,9 @@ export const cartSlice = createSlice({
       const item = state.productData.find(
         (item) => item.id === action.payload.id
       );
-
       if (item) {
         if (item.quantity > 1) {
           item.quantity--;
-        } else {
-          console.warn("Quantity already at minimum");
         }
       }
     },
@@ -48,6 +46,9 @@ export const cartSlice = createSlice({
     resetCart: (state) => {
       state.productData = [];
     },
+    setSearchTerm: (state, action) => {
+      state.searchTerm = action.payload;
+    },
   },
 });
 
@@ -57,6 +58,7 @@ export const {
   decrementQuantity,
   deleteItem,
   resetCart,
+  setSearchTerm,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

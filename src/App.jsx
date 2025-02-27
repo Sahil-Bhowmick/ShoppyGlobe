@@ -11,6 +11,7 @@ import {
   ScrollRestoration,
 } from "react-router-dom";
 
+const NotFound = React.lazy(() => import("./components/Error"));
 const Layout = () => {
   return (
     <div>
@@ -38,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "*", // Catch-all route for undefined paths
+        element: (
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <NotFound />
+          </React.Suspense>
+        ),
       },
     ],
   },

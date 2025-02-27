@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Products from "../components/Products";
 import { useProducts } from "../hooks/useProducts";
+import { setSearchTerm } from "../redux/cartSlice";
+import { useDispatch } from "react-redux";
 
 const LoadingSkeleton = () => {
   return (
@@ -25,7 +27,11 @@ const LoadingSkeleton = () => {
 };
 
 const Home = () => {
+  const dispatch = useDispatch();
   const { products, loading, error } = useProducts();
+  useEffect(() => {
+    dispatch(setSearchTerm("")); // Clear search term on component mount
+  }, [dispatch]);
 
   if (loading) return <LoadingSkeleton />;
 

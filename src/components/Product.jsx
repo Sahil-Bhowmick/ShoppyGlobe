@@ -4,6 +4,7 @@ import { MdOutlineStar } from "react-icons/md";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
+import { setSearchTerm } from "../redux/cartSlice";
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,10 @@ const Product = () => {
   const [baseQty, setBaseQty] = useState(1);
 
   const { state: location } = useLocation();
+  useEffect(() => {
+    // Clear the search term when the component mounts
+    dispatch(setSearchTerm(""));
+  }, [dispatch]);
 
   useEffect(() => {
     if (!location?.item) return;
@@ -50,7 +55,11 @@ const Product = () => {
                 ? details.images[0]
                 : details.images
             }
-            alt="productImg"
+            alt={details.title || "Product Image"}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "/images/placeholder.png";
+            }}
           />
           {details?.availabilityStatus && (
             <span

@@ -1,7 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import ProductsCard from "./ProductsCard";
 
 const Products = ({ products }) => {
+  const searchTerm = useSelector((state) => state.shoppyGlobe.searchTerm);
+
+  // Filter products based on search term
+  const filteredProducts = products.filter((item) =>
+    item.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="py-10 px-4 lg:px-0">
       <div className="max-w-screen-xl mx-auto">
@@ -15,11 +23,20 @@ const Products = ({ products }) => {
             needs.
           </p>
         </div>
+
+        {/* Display filtered products */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.map((item) => (
+          {filteredProducts.map((item) => (
             <ProductsCard key={item.id} product={item} />
           ))}
         </div>
+
+        {/* Show message if no products match the search */}
+        {filteredProducts.length === 0 && (
+          <p className="text-center text-gray-600">
+            No products found for "{searchTerm}"
+          </p>
+        )}
       </div>
     </div>
   );

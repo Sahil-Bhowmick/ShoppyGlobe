@@ -42,9 +42,9 @@ ShoppyGlobe is a basic e-commerce application built using React and Redux. This 
    ```
 4. Start the development server:
    ```sh
-   npm start
+   npm run dev
    ```
-5. Open the application in the browser at `http://localhost:3000`.
+5. Open the application in the browser at `http://localhost:5173/`.
 
 ## Project Structure
 

@@ -3,8 +3,7 @@ import { FaEye } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../redux/cartSlice";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const ProductsCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -107,19 +106,6 @@ const ProductsCard = ({ product }) => {
           </div>
         </div>
       </div>
-      <ToastContainer
-        position="top-left"
-        style={{ marginTop: "70px" }}
-        autoClose={1500}
-        hideProgressBar={false}
-        newestOnTop={true}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
     </div>
   );
 };

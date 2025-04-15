@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { MdOutlineStar } from "react-icons/md";
-import { ToastContainer, toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
 import { setSearchTerm } from "../redux/cartSlice";
+import { toast } from "react-toastify";
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -222,20 +222,6 @@ const Product = () => {
           )}
         </div>
       </div>
-      {/* Toast Container for Notifications */}
-      <ToastContainer
-        position="top-left"
-        style={{ marginTop: "70px" }}
-        autoClose={1500}
-        hideProgressBar={false}
-        newestOnTop={true}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
     </div>
   );
 };

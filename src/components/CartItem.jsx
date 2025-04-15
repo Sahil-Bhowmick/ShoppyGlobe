@@ -7,9 +7,10 @@ import {
   deleteItem,
   resetCart,
 } from "../redux/cartSlice";
-import { ToastContainer, toast } from "react-toastify";
+
 import { MdDelete } from "react-icons/md";
 import { HiOutlineArrowLeft } from "react-icons/hi";
+import { toast } from "react-toastify";
 
 const CartItem = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const CartItem = () => {
               <MdDelete
                 onClick={() => {
                   dispatch(deleteItem(item.id));
-                  toast.error(`${item.title} is removed`);
+                  toast.error(`${item.title} is removed from cart!`);
                 }}
                 className="text-3xl text-gray-500 hover:text-red-600 cursor-pointer transition duration-300"
               />
@@ -134,18 +135,6 @@ const CartItem = () => {
           </button>
         </Link>
       </div>
-      <ToastContainer
-        position="top-left"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
     </div>
   );
 };
